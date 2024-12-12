@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction App</h1>
+        <form action="/predict" method="POST">
+            <div class="mb-3">
+                <label for="input1" class="form-label">Hours Studied</label>
+                <input type="number" step="0.1" class="form-control" id="input1" name="input1" placeholder="e.g., 7" required>
+            </div>
+            <div class="mb-3">
+                <label for="input2" class="form-label">Previous Scores</label>
+                <input type="number" class="form-control" id="input2" name="input2" placeholder="e.g., 99" required>
+            </div>
+            <div class="mb-3">
+                <label for="input3" class="form-label">Extracurricular Activities (1 = Yes, 0 = No)</label>
+                <input type="number" class="form-control" id="input3" name="input3" placeholder="e.g., 1" required>
+            </div>
+            <div class="mb-3">
+                <label for="input4" class="form-label">Sleep Hours</label>
+                <input type="number" step="0.1" class="form-control" id="input4" name="input4" placeholder="e.g., 9" required>
+            </div>
+            <div class="mb-3">
+                <label for="input5" class="form-label">Sample Question Papers Practiced</label>
+                <input type="number" class="form-control" id="input5" name="input5" placeholder="e.g., 1" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Predict Performance</button>
+            </div>
+        </form>
+
+        <!-- Section to display the prediction result -->
+        {% if predicted_text %}
+        <div class="result">
+            {{ predicted_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
